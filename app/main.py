@@ -1,7 +1,11 @@
 from fastapi import FastAPI
+from app.routes import tarefas
 
 app = FastAPI()
 
 @app.get("/")
-def read_root():
-	return{"message": "API funcionando. Tamo on."}
+def home():
+	return {"mensagem": "Api de Tarefas funcionando!"}
+
+# Inclui as rotas
+app.include_router(tarefas.router)
