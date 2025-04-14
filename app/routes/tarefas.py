@@ -34,3 +34,4 @@ def deletar_tarefa(id:int):
         if tarefa.id == id:
             tarefas_db.remove(tarefa)
             return {"mensagem": "Tarefa deletada com sucesso", "tarefa": tarefa}
+    raise HTTPException(status_code=404, detail="Tarefa não encontrada")

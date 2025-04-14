@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-	return {"mensagem": "Api de Tarefas funcionando!"}
+	return {"mensagem": "API de tarefas funcionando!"}
 
 # Inclui as rotas
 app.include_router(tarefas.router)

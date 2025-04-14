@@ -1,4 +1,4 @@
- Task API – FastAPI 🐍🚀
+# Task API – FastAPI 🐍🚀
 
 API simples desenvolvida com [FastAPI](https://fastapi.tiangolo.com/) para fins de estudo e prática de backend com Python.
 
@@ -10,12 +10,30 @@ API simples desenvolvida com [FastAPI](https://fastapi.tiangolo.com/) para fins 
 - [x] Uvicorn para desenvolvimento local com recarregamento automático
 - [x] Ambiente virtual isolado com `venv`
 - [x] Versionamento de dependências com `requirements.txt`
+- [x] Testes automatizados com `pytest` e `TestClient`
+- [x] Isolamento de estado com `setup_function` para testes independentes
 
 ---
 
 ## 📁 Estrutura de Pastas
 
-<pre> <code> task-api-fastapi/ ├── app/ │ └── main.py ├── .venv/ # Ambiente virtual (ignorado pelo Git) ├── requirements.txt # Dependências do projeto ├── README.md └── .gitignore </code> </pre>
+<pre><code>
+task-api-fastapi/
+├── app/
+│   ├── main.py
+│   ├── models.py
+│   ├── database.py
+│   └── routes/
+│       └── tarefas.py
+├── tests/
+│   └── test_tarefas.py
+├── .venv/               # Ambiente virtual (ignorado pelo Git)
+├── requirements.txt     # Dependências do projeto
+├── README.md
+└── .gitignore
+</code></pre>
+
+---
 
 ## ✅ Requisitos
 
@@ -26,19 +44,40 @@ API simples desenvolvida com [FastAPI](https://fastapi.tiangolo.com/) para fins 
 
 ---
 
-## 🧪 Como Rodar Localmente
+## 🧪 Como Rodar os Testes
+
+O projeto utiliza `pytest` para validação automatizada de todas as rotas.  
+A lista de tarefas é limpa automaticamente entre cada teste com `setup_function()`.
+
+### Passos:
 
 ```bash
-# Clonar o projeto
-git clone git@github.com:leooliveira04/task-api-fastapi.git
-cd task-api-fastapi
-
-# Criar e ativar o ambiente virtual
-python3 -m venv .venv
-source .venv/bin/activate
-
 # Instalar dependências
 pip install -r requirements.txt
 
-# Rodar a aplicação
-uvicorn app.main:app --reload
+# Rodar os testes
+PYTHONPATH=. pytest
+
+
+🔁 Rotas testadas
+
+    GET /
+
+    GET /tarefas
+
+    GET /tarefas/{id}
+
+    POST /tarefas
+
+    PUT /tarefas/{id}
+
+    DELETE /tarefas/{id}
+
+
+📌 Status atual
+
+    API funcional com rotas de CRUD completas
+
+    Testes automatizados e independentes
+
+    Estrutura pronta para evoluir com validações, autenticação e persistência real
