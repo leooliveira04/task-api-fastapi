@@ -58,7 +58,9 @@ pip install -r requirements.txt
 # Rodar os testes
 PYTHONPATH=. pytest
 
+```
 
+## Comentários
 🔁 Rotas testadas
 
     GET /
