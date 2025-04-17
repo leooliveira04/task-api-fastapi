@@ -83,3 +83,27 @@ PYTHONPATH=. pytest
     Testes automatizados e independentes
 
     Estrutura pronta para evoluir com validações, autenticação e persistência real
+
+
+### Validações
+🛡️ Validações e Boas Práticas
+
+    Validação de título (titulo) com:
+
+        Tamanho entre 3 e 50 caracteres
+
+        Proibição do uso da palavra "teste"
+
+        Obrigatoriedade da primeira letra maiúscula
+
+    Validação de descrição (descricao) com:
+
+        Tamanho entre 5 e 200 caracteres
+
+        Proibição de links (http://, https://, www.)
+
+    Campo prioridade opcional, entre 1 e 5
+
+    Respostas estruturadas via response_model com Pydantic
+
+    Utilização do @field_validator (Pydantic v2)

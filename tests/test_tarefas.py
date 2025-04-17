@@ -27,8 +27,8 @@ def test_post_tarefa():
     response = client.post("/tarefas", json=nova_tarefa)
 
     assert response.status_code == 200
-    assert response.json()["mensagem"] == "Tarefa criada com sucesso"
-    assert response.json()["tarefa"] == nova_tarefa
+    
+    assert response.json() == nova_tarefa
 
 def test_get_tarefas():
     response = client.get("/tarefas")
@@ -67,7 +67,7 @@ def test_put_tarefa():
     
     response = client.put("/tarefas/1", json=tarefa_atualizada)
     assert response.status_code == 200
-    assert response.json()["tarefa"] == tarefa_atualizada
+    assert response.json() == tarefa_atualizada
 
 def test_delete_tarefa():
     client.post("/tarefas", json={
@@ -84,3 +84,14 @@ def test_delete_inexistente():
     response = client.delete("tarefas/999")
     assert response.status_code == 404
     assert response.json()["detail"] == "Tarefa não encontrada"
+
+
+def test_post_tarefa_invalida():
+    payload_invalido = {
+        "id": "banana",             # deveria ser int
+        "titulo": 123,              # deveria ser string
+        "descricao": ["não", "pode"], # deveria ser string
+        "concluida": "quase"        # deveria ser bool
+    }
+    response = client.post("/tarefas", json=payload_invalido)
+    assert response.status_code == 422
