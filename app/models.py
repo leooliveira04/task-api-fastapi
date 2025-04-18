@@ -22,7 +22,7 @@ class Tarefa(BaseModel):
         return v
 
 class TarefaCriar(Tarefa):
-    id: int
+   id: int
 
 class TarefaResposta(TarefaCriar):
     pass

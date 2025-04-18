@@ -21,7 +21,8 @@ def test_post_tarefa():
         "id": 1,
         "titulo": "Estudar pytest",
         "descricao": "Criar testes automatizados",
-        "concluida": False
+        "concluida": False,
+        "prioridade": 1
     }
 
     response = client.post("/tarefas", json=nova_tarefa)
@@ -40,7 +41,8 @@ def test_get_tarefa_por_id():
         "id": 1,
         "titulo": "Estudar pytest",
         "descricao": "Criar testes automatizados",
-        "concluida": False
+        "concluida": False,
+        "prioridade": 1
     })
     response = client.get("/tarefas/1")
     assert response.status_code == 200
@@ -56,13 +58,16 @@ def test_put_tarefa():
         "id": 1,
         "titulo": "Estudar pytest",
         "descricao": "Criar testes automatizados",
-        "concluida": False
+        "concluida": False,
+        "prioridade": 1
+
     })
     tarefa_atualizada = {
          "id": 1,
         "titulo": "Estudar FastAPI e Pytest",
         "descricao": "Atualizando tarefa via PUT",
-        "concluida": True
+        "concluida": False,
+        "prioridade": 1
     }
     
     response = client.put("/tarefas/1", json=tarefa_atualizada)
@@ -95,3 +100,25 @@ def test_post_tarefa_invalida():
     }
     response = client.post("/tarefas", json=payload_invalido)
     assert response.status_code == 422
+
+def test_post_titulo_invalido():
+    payload = {
+        "id": 2,
+        "titulo": "isso é um teste proibido",
+        "descricao": "Descrição válida",
+        "concluida": False
+    }
+    response = client.post("/tarefas", json=payload)
+    assert response.status_code == 422
+    assert "O título não pode conter a palavras 'teste'" in response.text
+
+def test_post_descricao_invalida():
+    payload = {
+        "id": 2,
+        "titulo": "Titulo valido",
+        "descricao": "Veja mais em http://link.com",
+        "concluida": False
+    }
+    response = client.post("/tarefas", json=payload)
+    assert response.status_code == 422
+    assert "Não é permitido o uso de links" in response.text
