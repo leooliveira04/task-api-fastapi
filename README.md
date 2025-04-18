@@ -107,3 +107,7 @@ PYTHONPATH=. pytest
     Respostas estruturadas via response_model com Pydantic
 
     Utilização do @field_validator (Pydantic v2)
+
+### 💾 Persistência de Dados
+
+    As tarefas atualmente são armazenadas em um arquivo local (`tarefas.json`) para simular um banco de dados. Em futuras versões, será integrado com SQLite e SQLModel.
