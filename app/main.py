@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.routes import tarefas
+from app.database import criar_db
 
 app = FastAPI()
 
